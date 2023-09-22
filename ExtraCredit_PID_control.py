@@ -8,10 +8,10 @@ ultrasonic = UltrasonicSensor()
 sound = Sound()
 
 DESIRED_DISTANCE_CM = 10
-Kp = 10  
-Ki = 10
-Kd = 10
-offset = 10 # Offset for zero error conditions
+Kp = 2.5
+Ki = 0.1
+Kd = 0.5
+offset = 0 # Offset for zero error conditions
 
 tank_pair = MoveTank(OUTPUT_B, OUTPUT_C)
 
@@ -28,6 +28,13 @@ while True:
   error_integral += error
 
   output_speed = (Kp * error) + (Kd * delta_error) + (Ki * error_integral ) + offset
+  
+  if output_speed > 100:
+    output_speed = 100
+  elif output_speed < -100:
+    output_speed = -100
+  else:
+    pass
 
   tank_pair.on(left_speed = output_speed, right_speed = output_speed)
 

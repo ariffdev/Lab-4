@@ -37,9 +37,9 @@ def follow_line():
     input_val = color.reflected_light_intensity
 
     if input_val < threshold_val: # on black, turn left
-      tank_pair.on(left_speed = 0, right_speed= 50)
+      tank_pair.on(left_speed = 0, right_speed= 30)
     elif input_val > threshold_val:  # on white, turn right
-      tank_pair.on(left_speed=50, right_speed=0)
+      tank_pair.on(left_speed=30, right_speed=0)
     
     sleep(0.01) # Sleep to not max out the CPU
 
